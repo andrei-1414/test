@@ -113,7 +113,7 @@ a {
 }
 
 .logo__image {
-  height: 3rem;
+  height: 3.5rem;
   width: auto;
   display: block;
 }
@@ -529,6 +529,7 @@ body{
   .site-main { padding: 0; }
   body { background: #fff; color: #000; }
 }
+
 
 
 
