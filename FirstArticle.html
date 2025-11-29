@@ -6,7 +6,6 @@
   <title>News Peda — City Council Approves New Transit Plan</title>
   <link rel="stylesheet" href="Main.css">
   <style>
-  /* Increased max-width so main image can be larger on wide screens */
   .article-viewer { max-width: 1200px; margin: 2rem auto; padding: 1rem; }
     .article-header { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom: 2rem; }
     .article-title { font-size:1.5rem; color:var(--black-color); margin: 0; }
@@ -15,7 +14,6 @@
     
     .gallery-container { margin: 2rem 0; }
     .gallery-main { position: relative; background: #f9f9f9; border-radius: 6px; border: 1px solid #e6e6e6; overflow: hidden; }
-  /* Allow images to use more of the viewport height for a larger view */
   .article-image { width: 100%; max-height: 88vh; height: auto; object-fit: contain; display: block; background: #fafafa; }
   .gallery-controls { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f5f5f5; border-top: 1px solid #e6e6e6; }
   .gallery-counter { color: hsl(220,8%,40%); font-size: 0.9rem; font-weight: var(--font-semi-bold); }
@@ -26,12 +24,9 @@
   .gallery-btn--hidden { display: none !important; }
     
     .thumbnail-strip { display: flex; gap: 0.5rem; padding: 1rem; background: #f5f5f5; border-top: 1px solid #e6e6e6; overflow-x: auto; }
-  /* Larger thumbnails for easier selection */
   .thumbnail { width: 90px; height: 90px; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.3s; object-fit: cover; }
     .thumbnail:hover { border-color: var(--black-color); }
     .thumbnail.active { border-color: var(--black-color); box-shadow: 0 0 8px rgba(16,24,40,0.2); }
-
-    /* Lightbox / zoom styles */
     .lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 9999; }
     .lightbox.open { display: flex; }
     .lightbox-content { position: relative; max-width: 96vw; max-height: 96vh; overflow: hidden; display:flex; align-items:center; justify-content:center; }
@@ -84,7 +79,7 @@
 
   </main>
 
-  <!-- LIGHTBOX / ZOOM MODAL -->
+  <!-- ZOOM  -->
   <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
     <div class="lightbox-content">
       <button id="lightbox-close" class="lightbox-close" aria-label="Close">Close</button>
@@ -98,7 +93,7 @@
   </div>
 
   <script>
-    // ===== EDIT THIS ARRAY TO ADD YOUR IMAGES =====
+    // ===== ARRAY OF IMAGES =====
     const imageUrls = [
       'coperta 6.jpg',
       'coperta 6.jpg',
@@ -168,11 +163,9 @@
     prevBtn.addEventListener('click', () => updateImage(currentIndex - 1));
     nextBtn.addEventListener('click', () => updateImage(currentIndex + 1));
 
-    // Initialize gallery
     createThumbnails();
     if (imageUrls.length > 0) updateImage(0);
 
-    // ===== Lightbox / Zoom logic (with keyboard nav & drag-to-pan) =====
     const zoomBtn = document.getElementById('zoom-btn');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
@@ -181,7 +174,7 @@
     const zoomOutBtn = document.getElementById('zoom-out');
     const zoomResetBtn = document.getElementById('zoom-reset');
 
-    // Transform state
+    // Transform 
     let scale = 1;
     let translateX = 0;
     let translateY = 0;
@@ -197,7 +190,7 @@
       lightbox.setAttribute('aria-hidden', 'false');
       scale = 1; translateX = 0; translateY = 0;
       updateTransform();
-      // focus for keyboard handling
+      // keyboard handling
       lightboxClose.focus();
     }
 
@@ -226,10 +219,8 @@
     zoomOutBtn.addEventListener('click', () => { scale = Math.max(0.2, scale / 1.2); updateTransform(); });
     zoomResetBtn.addEventListener('click', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); });
 
-    // Open via zoom button or clicking main image
     zoomBtn.addEventListener('click', () => openLightbox(currentIndex));
 
-    // --- Swipe on main image to navigate (mouse drag or touch glide) ---
     let swipeStartX = 0, swipeStartY = 0, isSwiping = false, preventClick = false;
     const SWIPE_THRESHOLD = 40; // px
 
@@ -260,7 +251,6 @@
     lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 
-    // Keyboard: Esc to close, Left/Right to navigate
     document.addEventListener('keydown', (e) => {
       if (!lightbox.classList.contains('open')) return;
       if (e.key === 'Escape') { closeLightbox(); }
@@ -268,30 +258,24 @@
       if (e.key === 'ArrowRight') { nextLightbox(); }
     });
 
-    // Wheel to pan when zoomed (scroll to traverse the zoomed image)
     lightboxImage.addEventListener('wheel', (e) => {
       if (!lightbox.classList.contains('open')) return;
-      // pan whether zoomed or not (always allow scrolling)
       e.preventDefault();
-      // deltaX/deltaY map to translate movement
-      const panSpeed = 1; // adjust if panning feels too fast/slow
+      const panSpeed = 1; 
       translateX -= e.deltaX * panSpeed;
       translateY -= e.deltaY * panSpeed;
       updateTransform();
     }, { passive: false });
 
-    // Pointer interactions on lightbox: support swipe navigation when not zoomed, and pan when zoomed
     let lbSwipeStartX = 0, lbSwipeStartY = 0, lbIsSwiping = false;
 
     lightboxImage.addEventListener('pointerdown', (e) => {
       lbSwipeStartX = e.clientX; lbSwipeStartY = e.clientY; lbIsSwiping = false;
-      // If zoomed in, start panning
       if (scale > 1) {
         e.preventDefault();
         isPanning = true; pointerId = e.pointerId; startX = e.clientX; startY = e.clientY;
         lightboxImage.setPointerCapture(pointerId); lightboxImage.style.cursor = 'grabbing';
       } else {
-        // capture pointer for swipe detection
         lightboxImage.setPointerCapture(e.pointerId);
       }
     });
@@ -305,8 +289,6 @@
       const dx = e.clientX - lbSwipeStartX; const dy = e.clientY - lbSwipeStartY;
       if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) lbIsSwiping = true;
     });
-
-  // prevent click after swipe in lightbox
   let lbPreventClick = false;
 
   lightboxImage.addEventListener('pointerup', (e) => {
@@ -316,7 +298,6 @@
         pointerId = null; lightboxImage.style.cursor = 'grab';
         return;
       }
-      // swipe to change image when not zoomed
       try { lightboxImage.releasePointerCapture(e.pointerId); } catch (_) {}
       const dx = e.clientX - lbSwipeStartX; const dy = e.clientY - lbSwipeStartY;
       if (lbIsSwiping && Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
@@ -326,11 +307,10 @@
       }
     });
 
-    // Click-to-zoom: clicking a point zooms into that point; click again to reset
     lightboxImage.addEventListener('click', (e) => {
-      if (lbPreventClick) return; // ignore click right after swipe
+      if (lbPreventClick) return; 
       if (scale <= 1) {
-        // zoom in centered at click point
+        // zoom in centered 
         const rect = lightboxImage.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -350,5 +330,6 @@
   </script>
 </body>
 </html>
+
 
 
