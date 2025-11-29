@@ -80,6 +80,8 @@ a {
 /*=============== NAV ===============*/
 .nav {
   height: var(--header-height);
+  z-index: 100;
+  position: relative;
 }
 
 .nav__logo, 
@@ -93,6 +95,14 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 1118px) {
+  .nav__data {
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
 }
 
 .nav__logo {
@@ -146,7 +156,18 @@ a {
   font-size: .95rem;
 }
 
-.nav__search { margin-left: 1rem; }
+.nav__search { 
+  margin-left: 1rem; 
+  flex: 1; 
+  min-width: 0;
+}
+
+@media screen and (max-width: 1118px) {
+  .nav__search { 
+    flex-shrink: 1; 
+    margin-left: 0.5rem;
+  }
+}
 
 .nav__toggle {
   position: relative;
@@ -182,7 +203,11 @@ a {
     overflow: auto;
 
     opacity: 0;
+    pointer-events: none;
     transition: top .4s, opacity .3s;
+  }
+  .nav__menu.show-menu {
+    pointer-events: initial;
   }
   .nav__menu::-webkit-scrollbar {
     width: 0;
