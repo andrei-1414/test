@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             let swipeStartX = 0, swipeStartY = 0, isSwiping = false, preventClick = false;
-            const SWIPE_THRESHOLD = 40;
+            const SWIPE_THRESHOLD = 15;
 
             function handleGallerySwipe(dx) {
                 if (dx < -SWIPE_THRESHOLD) {
@@ -260,4 +260,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
         initArticleGallery();
 });
+
 
