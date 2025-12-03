@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             let swipeStartX = 0, swipeStartY = 0, isSwiping = false, preventClick = false;
-            const SWIPE_THRESHOLD = 15;
+            const SWIPE_THRESHOLD = 40;
 
             function handleGallerySwipe(dx) {
                 if (dx < -SWIPE_THRESHOLD) {
@@ -235,7 +235,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     try { lightboxImage.releasePointerCapture(e.pointerId); } catch (_) {}
                     const dx = e.clientX - lbSwipeStartX; const dy = e.clientY - lbSwipeStartY;
                     if (lbIsSwiping && Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
-                        if (dx < 0) setLightboxImage(currentIndex + 1); else setLightboxImage(currentIndex - 1);
+                        if (dx < -SWIPE_THRESHOLD) {
+                            setLightboxImage(currentIndex + 1);
+                        } else if (dx > SWIPE_THRESHOLD) {
+                            setLightboxImage(currentIndex - 1);
+                        }
                         lbPreventClick = true; setTimeout(() => { lbPreventClick = false; }, 300);
                     }
                 });
@@ -260,5 +264,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
         initArticleGallery();
 });
-
-
