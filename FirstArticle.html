@@ -3,48 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>News Peda — Prima Revista </title>
+  <title>News Peda — City Council Approves New Transit Plan</title>
   <link rel="stylesheet" href="Main.css">
-  <style>
-  .article-viewer { max-width: 1200px; margin: 2rem auto; padding: 1rem; }
-    .article-header { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom: 2rem; }
-    .article-title { font-size:1.5rem; color:var(--black-color); margin: 0; }
-    .article-sub { color:hsl(220,8%,40%); font-size:0.95rem; margin-top:0.5rem; }
-    .back-link { color: hsl(220,8%,40%); font-weight: var(--font-semi-bold); white-space: nowrap; text-decoration: underline; }
-    
-    .gallery-container { margin: 2rem 0; }
-    .gallery-main { position: relative; background: #f9f9f9; border-radius: 6px; border: 1px solid #e6e6e6; overflow: hidden; }
-  .article-image { width: 100%; max-height: 88vh; height: auto; object-fit: contain; display: block; background: #fafafa; }
-  .gallery-controls { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f5f5f5; border-top: 1px solid #e6e6e6; }
-  .gallery-counter { color: hsl(220,8%,40%); font-size: 0.9rem; font-weight: var(--font-semi-bold); }
-    .gallery-nav { display: flex; gap: 0.5rem; }
-    .gallery-btn { background: var(--black-color); color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: var(--font-semi-bold); transition: background 0.3s; }
-  .gallery-btn:hover { background: hsl(220, 24%, 20%); }
-  .gallery-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .gallery-btn--hidden { display: none !important; }
-    
-    .thumbnail-strip { display: flex; gap: 0.5rem; padding: 1rem; background: #f5f5f5; border-top: 1px solid #e6e6e6; overflow-x: auto; }
-  .thumbnail { width: 90px; height: 90px; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.3s; object-fit: cover; }
-    .thumbnail:hover { border-color: var(--black-color); }
-    .thumbnail.active { border-color: var(--black-color); box-shadow: 0 0 8px rgba(16,24,40,0.2); }
-    .lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 9999; }
-    .lightbox.open { display: flex; }
-    .lightbox-content { position: relative; max-width: 96vw; max-height: 96vh; overflow: hidden; display:flex; align-items:center; justify-content:center; }
-    .lightbox img { max-width: 100%; max-height: 100%; transform-origin: center center; transition: transform 150ms ease; cursor: grab; }
-    .zoom-controls { position: absolute; top: 12px; right: 12px; display:flex; gap:8px; }
-    .zoom-btn { background: rgba(255,255,255,0.95); border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-weight: 600; }
-    .zoom-btn:active { transform: scale(0.98); }
-    .lightbox-close { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.95); border: none; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-weight: 600; }
-    
-    .article-meta { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e6e6e6; color: hsl(220,8%,40%); font-size: 0.9rem; }
-  </style>
 </head>
 <body>
   <header class="header">
     <nav class="nav container">
     <div class="nav__data" style="justify-content: center; width: 100%; display: flex;">
           <a href="#" class="nav__logo" style="justify-content: center; width: 100%; display: flex;">
-            <img src="Screenshot 2025-11-29 095141.png" alt="News Peda logo" class="logo__image" style="height: 4.5rem; width: auto; display: block; margin: 0 auto;">
+            <img src="images/Screenshot 2025-11-29 095141.png" alt="News Peda logo" class="logo__image" style="height: 4.5rem; width: auto; display: block; margin: 0 auto;">
           </a>
    </nav>
   </header>
@@ -53,15 +20,14 @@
     <div class="article-header">
       <div>
         <h1 class="article-title">Prima Revista</h1>
-        <p class="article-sub">Dec 2, 2025 — Realizata de unii din peda</p>
+        <p class="article-sub">Dec 2, 2025 — Realizata da Prostii din peda</p>
       </div>
       <div>
-        <a class="back-link" href="index.html">← Back</a>
+        <a class="back-link" href="Main.html">← Back</a>
       </div>
     </div>
 
-    <!-- IMAGE GALLERY -->
-    <div class="gallery-container">
+    <div class="gallery-container" data-image-urls='["coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg","coperta 6.jpg"]'>
       <div class="gallery-main">
         <img id="article-image" class="article-image" alt="Article image" src="">
         <div class="gallery-controls">
@@ -79,7 +45,6 @@
 
   </main>
 
-  <!-- ZOOM  -->
   <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
     <div class="lightbox-content">
       <button id="lightbox-close" class="lightbox-close" aria-label="Close">Close</button>
@@ -92,246 +57,6 @@
     </div>
   </div>
 
-  <script>
-    // ===== ARRAY OF IMAGES =====
-    const imageUrls = [
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-      'coperta 6.jpg',
-    ];
-
-    let currentIndex = 0;
-
-    const imgElement = document.getElementById('article-image');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const currentImageSpan = document.getElementById('current-image');
-    const totalImagesSpan = document.getElementById('total-images');
-    const thumbnailStrip = document.getElementById('thumbnail-strip');
-
-    function updateImage(index) {
-      if (imageUrls.length === 0) return;
-      currentIndex = (index + imageUrls.length) % imageUrls.length;
-      imgElement.src = imageUrls[currentIndex];
-      currentImageSpan.textContent = currentIndex + 1;
-      updateThumbnails();
-      updateButtons();
-    }
-
-    function updateButtons() {
-      prevBtn.disabled = imageUrls.length <= 1;
-      nextBtn.disabled = imageUrls.length <= 1;
-    }
-
-    function updateThumbnails() {
-      document.querySelectorAll('.thumbnail').forEach((thumb, idx) => {
-        thumb.classList.toggle('active', idx === currentIndex);
-      });
-    }
-
-    function createThumbnails() {
-      thumbnailStrip.innerHTML = '';
-      totalImagesSpan.textContent = imageUrls.length;
-      imageUrls.forEach((url, idx) => {
-        const thumb = document.createElement('img');
-        thumb.src = url;
-        thumb.alt = `Image ${idx + 1}`;
-        thumb.className = 'thumbnail';
-        if (idx === 0) thumb.classList.add('active');
-        thumb.addEventListener('click', () => updateImage(idx));
-        thumbnailStrip.appendChild(thumb);
-      });
-      updateButtons();
-    }
-
-    prevBtn.addEventListener('click', () => updateImage(currentIndex - 1));
-    nextBtn.addEventListener('click', () => updateImage(currentIndex + 1));
-
-    createThumbnails();
-    if (imageUrls.length > 0) updateImage(0);
-
-    const zoomBtn = document.getElementById('zoom-btn');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const zoomInBtn = document.getElementById('zoom-in');
-    const zoomOutBtn = document.getElementById('zoom-out');
-    const zoomResetBtn = document.getElementById('zoom-reset');
-
-    // Transform 
-    let scale = 1;
-    let translateX = 0;
-    let translateY = 0;
-    let isPanning = false;
-    let startX = 0;
-    let startY = 0;
-    let pointerId = null;
-
-    function openLightbox(index) {
-      currentIndex = (index + imageUrls.length) % imageUrls.length;
-      lightboxImage.src = imageUrls[currentIndex];
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      scale = 1; translateX = 0; translateY = 0;
-      updateTransform();
-      // keyboard handling
-      lightboxClose.focus();
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImage.src = '';
-      scale = 1; translateX = 0; translateY = 0;
-      updateTransform();
-    }
-
-    function updateTransform() {
-      lightboxImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-    }
-
-    function setLightboxImage(index) {
-      currentIndex = (index + imageUrls.length) % imageUrls.length;
-      lightboxImage.src = imageUrls[currentIndex];
-      scale = 1; translateX = 0; translateY = 0; updateTransform();
-    }
-
-    function prevLightbox() { setLightboxImage(currentIndex - 1); }
-    function nextLightbox() { setLightboxImage(currentIndex + 1); }
-
-    zoomInBtn.addEventListener('click', () => { scale = Math.min(5, scale * 1.2); updateTransform(); });
-    zoomOutBtn.addEventListener('click', () => { scale = Math.max(0.2, scale / 1.2); updateTransform(); });
-    zoomResetBtn.addEventListener('click', () => { scale = 1; translateX = 0; translateY = 0; updateTransform(); });
-
-    zoomBtn.addEventListener('click', () => openLightbox(currentIndex));
-
-    let swipeStartX = 0, swipeStartY = 0, isSwiping = false, preventClick = false;
-    const SWIPE_THRESHOLD = 40; // px
-
-    imgElement.addEventListener('pointerdown', (e) => {
-      swipeStartX = e.clientX; swipeStartY = e.clientY; isSwiping = false;
-      imgElement.setPointerCapture(e.pointerId);
-    });
-
-    imgElement.addEventListener('pointermove', (e) => {
-      const dx = e.clientX - swipeStartX; const dy = e.clientY - swipeStartY;
-      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
-        isSwiping = true;
-      }
-    });
-
-    imgElement.addEventListener('pointerup', (e) => {
-      try { imgElement.releasePointerCapture(e.pointerId); } catch (err) {}
-      const dx = e.clientX - swipeStartX; const dy = e.clientY - swipeStartY;
-      if (isSwiping && Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
-        if (dx < 0) updateImage(currentIndex + 1); else updateImage(currentIndex - 1);
-        preventClick = true;
-        setTimeout(() => { preventClick = false; }, 300);
-      }
-    });
-
-    imgElement.addEventListener('click', () => { if (!preventClick) openLightbox(currentIndex); });
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') { closeLightbox(); }
-      if (e.key === 'ArrowLeft') { prevLightbox(); }
-      if (e.key === 'ArrowRight') { nextLightbox(); }
-    });
-
-    lightboxImage.addEventListener('wheel', (e) => {
-      if (!lightbox.classList.contains('open')) return;
-      e.preventDefault();
-      const panSpeed = 1; 
-      translateX -= e.deltaX * panSpeed;
-      translateY -= e.deltaY * panSpeed;
-      updateTransform();
-    }, { passive: false });
-
-    let lbSwipeStartX = 0, lbSwipeStartY = 0, lbIsSwiping = false;
-
-    lightboxImage.addEventListener('pointerdown', (e) => {
-      lbSwipeStartX = e.clientX; lbSwipeStartY = e.clientY; lbIsSwiping = false;
-      if (scale > 1) {
-        e.preventDefault();
-        isPanning = true; pointerId = e.pointerId; startX = e.clientX; startY = e.clientY;
-        lightboxImage.setPointerCapture(pointerId); lightboxImage.style.cursor = 'grabbing';
-      } else {
-        lightboxImage.setPointerCapture(e.pointerId);
-      }
-    });
-
-    lightboxImage.addEventListener('pointermove', (e) => {
-      if (isPanning && e.pointerId === pointerId) {
-        const dx = e.clientX - startX; const dy = e.clientY - startY; startX = e.clientX; startY = e.clientY;
-        translateX += dx; translateY += dy; updateTransform();
-        return;
-      }
-      const dx = e.clientX - lbSwipeStartX; const dy = e.clientY - lbSwipeStartY;
-      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) lbIsSwiping = true;
-    });
-  let lbPreventClick = false;
-
-  lightboxImage.addEventListener('pointerup', (e) => {
-      // end panning
-      if (isPanning && e.pointerId === pointerId) {
-        isPanning = false; try { lightboxImage.releasePointerCapture(pointerId); } catch (_) {}
-        pointerId = null; lightboxImage.style.cursor = 'grab';
-        return;
-      }
-      try { lightboxImage.releasePointerCapture(e.pointerId); } catch (_) {}
-      const dx = e.clientX - lbSwipeStartX; const dy = e.clientY - lbSwipeStartY;
-      if (lbIsSwiping && Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
-        if (dx < 0) setLightboxImage(currentIndex + 1); else setLightboxImage(currentIndex - 1);
-        lbPreventClick = true; // avoid click immediately after swipe
-        setTimeout(() => { lbPreventClick = false; }, 300);
-      }
-    });
-
-    lightboxImage.addEventListener('click', (e) => {
-      if (lbPreventClick) return; 
-      if (scale <= 1) {
-        // zoom in centered 
-        const rect = lightboxImage.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const px = (x / rect.width) * 100;
-        const py = (y / rect.height) * 100;
-        lightboxImage.style.transformOrigin = `${px}% ${py}%`;
-        scale = 2.5; // zoom in level
-        translateX = 0; translateY = 0;
-        updateTransform();
-      } else {
-        // reset zoom
-        scale = 1; translateX = 0; translateY = 0;
-        lightboxImage.style.transformOrigin = 'center center';
-        updateTransform();
-      }
-    });
-  </script>
+  <script src="Main.js"></script>
 </body>
 </html>
-
-
-
-
-
