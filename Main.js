@@ -172,17 +172,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
 
-            // Gallery swipe navigation for mobile & desktop users
             let swipeStartX = 0, swipeStartY = 0, isSwiping = false, preventClick = false;
             const SWIPE_THRESHOLD = 40;
 
-            // Handle swipe: left swipe = next image, right swipe = previous image
             function handleGallerySwipe(dx) {
                 if (dx < -SWIPE_THRESHOLD) {
-                    // Swiped left → go to next image
                     updateImage(currentIndex + 1);
                 } else if (dx > SWIPE_THRESHOLD) {
-                    // Swiped right → go to previous image
                     updateImage(currentIndex - 1);
                 }
                 preventClick = true;
@@ -264,3 +260,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
         initArticleGallery();
 });
+
